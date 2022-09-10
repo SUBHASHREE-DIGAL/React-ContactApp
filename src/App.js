@@ -1,87 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-const App = () => {
-  const [news, setNews] = useState([]);
+function App() {
+  const [newTime, setNewTime] = useState("");
 
   useEffect(() => {
-    //  let data = async () => {
-    //    let response = await axios.get(
-    //      "https://newsapi.org/v2/top-headlines?country=in&apiKey=d3408808d49d462a99f21e8472eb00cc"
-    //    );
-    //    console.log(response.data.articles);
-    //    setNews(response.data.articles);
-    //  };
-    //  data();
-    fetchNews();
-  }, []);
+    setInterval(() => {
+      let date = new Date();
+      let hrs = date.getHours();
+      let mins = date.getMinutes();
+      let sec = date.getSeconds();
+      let period = "AM";
 
-  let fetchNews = async () => {
-    let response = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=d3408808d49d462a99f21e8472eb00cc"
-    );
-    console.log(response.data.articles);
-    setNews(response.data.articles);
-  };
+      if (hrs === 0) {
+        hrs = 12;
+      } else if (hrs >= 12) {
+        hrs = hrs - 12;
+        period = "PM";
+      }
+      hrs = hrs < 10 ? "0" + hrs : hrs;
+      mins = mins < 10 ? "0" + mins : mins;
+      sec = sec < 10 ? "0" + sec : sec;
+
+      setNewTime(`${hrs}:${mins}:${sec}:${period}`);
+    }, 1000);
+  });
 
   return (
-    <React.Fragment>
-      <header className="head">
-        <h1>News Articles</h1>
-        <div>
-          <button onClick={fetchNews} className="btn btn-outline-danger btn-sm">
-            Fetch news
-          </button>
-        </div>
-      </header>
-
-      <article>
-        <div className="container">
-          <div className="row">
-            {news.map((value) => {
-              return (
-                <div className="col-12 my-3" key={value.id}>
-                  <div className="card text-center">
-                    <img
-                      src={value.urlToImage}
-                      className="card-img-top"
-                      alt="/"
-                    />
-                    <div className="card-header border-0 bg-info">
-                      <h2 className="card-title">{value.title}</h2>{" "}
-                    </div>
-                    <div className="card-body">
-                      <h4 className="card-text">{value.content}</h4>
-                      <p className="card-text">{value.description}</p>
-                      <a
-                        className="btn btn-info"
-                        href={value.url}
-                        role="button"
-                      >
-                        Read more
-                      </a>
-                      <div className="my-2">
-                        {" "}
-                        <p className="card-text fw-bolder">
-                          {" "}
-                          {value.author} ,{" "}
-                          <small className="text-muted">
-                            {value.publishedAt}
-                          </small>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+    <div className="App">
+      <div className="row">
+        <div className="col-12">
+          <div className="card text-center border-0 shadow-lg">
+            <div className="card-header border-0">
+              <h1>DIGITAL CLOCK</h1>
+            </div>
+            <div className="card-body">
+              <h2 className="fw-bolder">{newTime}</h2>
+            </div>
           </div>
         </div>
-      </article>
-    </React.Fragment>
+      </div>
+    </div>
   );
-};
+}
 
 export default App;

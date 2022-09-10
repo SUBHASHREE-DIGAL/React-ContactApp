@@ -1,13 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-
-}
-.head{
+.App{
+    background-image: url("https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?w=2000");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
