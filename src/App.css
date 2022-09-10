@@ -1,14 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
 
-.App{
+}
+.head{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: 
-  url(
-"https://media.istockphoto.com/photos/forest-wooden-table-background-summer-sunny-meadow-with-green-grass-picture-id1353553203?b=1&k=20&m=1353553203&s=170667a&w=0&h=QTyTGI9tWQluIlkmwW0s7Q4z7R_IT8egpzzHjW3cSas=");
-  background-size: cover;
-  height: 100vh;
-  margin: 0;
-  font-size:50px;
-  background-repeat:no-repeat; 
 }
